@@ -16,16 +16,6 @@
 \captionsetup[figure]{font=normalsize,labelfont=normalfont,labelsep=colon}
 
 % Fragmento del expediente: conserva la numeración del PDF de referencia.
-% Los cinco planos son imágenes originales extraídas, sin pérdida de calidad.
-\newcommand{\paginaPlano}[3]{%
-  \clearpage
-  \begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth,height=22cm,keepaspectratio]{#1}
-    \caption{#2}
-    \label{#3}
-  \end{figure}
-}
 
 \begin{document}
 
@@ -66,18 +56,21 @@
   {\Large\bfseries Tema: Cableado y estructurado\par}
 
   \vspace{0.8cm}
-  {\fontsize{20}{25}\selectfont Curso: Redes de computadoras I\par}
+  {\Large Primer entregable del curso de:\par}
+  {\fontsize{20}{25}\selectfont\bfseries Redes de computadoras I\par}
 
   \vspace{0.4cm}
   {\Large\bfseries Docente:\par}
-  {\large Dario Francisco Dueñas Bustiza\par}
+  {\large Rony Villafuerte Serna\par}
 
   \vspace{0.4cm}
   {\Large\bfseries Integrantes:\par}
   \vspace{0.15cm}
   \begin{tabular}{@{}lr@{}}
-    - André Marcelo Mendoza Mayta & 200825\\
-    - Elbert César Sánchez Chacón & 200341
+    - José Francisco Quentasi Juachin & 215948\\
+    - Luis Alejandro Ramos Aguirre & 225425\\
+    - Hernan Washington Ramos Alata & 221989\\
+    - Efrian Vitorino Marin & 160337
   \end{tabular}\par
 
   \vfill
@@ -147,14 +140,10 @@ especificaciones técnicas detalladas en el presente expediente.
     \end{itemize}
 \end{enumerate}
 
-\paginaPlano{plano-000.jpg}{Plano distribución primer nivel}{fig:primer-nivel}
-\paginaPlano{plano-001.jpg}{Plano distribución segundo nivel}{fig:segundo-nivel}
-\paginaPlano{plano-002.jpg}{Plano distribución tercer nivel}{fig:tercer-nivel}
-\paginaPlano{plano-003.jpg}{Plano distribución cuarto nivel}{fig:cuarto-nivel}
-\paginaPlano{plano-004.jpg}{Plano de cubiertas}{fig:cubiertas}
-
 % Exportación vectorial del archivo PlanosIIS.dwg: vista general y láminas
 % de plantas, cubiertas, cortes y elevaciones en su propio formato de papel.
+% Se omiten las tramas HATCH: su conversión generaba rellenos que ocultaban
+% el dibujo. La presentación está ajustada al papel, no a escala de impresión.
 \clearpage
 \includepdf[pages=-,fitpaper=true,pagecommand={}]{imagenes/PlanosIIS.pdf}
 
