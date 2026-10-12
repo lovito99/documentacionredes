@@ -8,6 +8,7 @@
 \usepackage{enumitem}
 \usepackage{caption}
 \usepackage{pdfpages}
+\usepackage{eso-pic}
 
 \graphicspath{{imagenes/}}
 \pagestyle{plain}
@@ -15,7 +16,8 @@
 \setlength{\parskip}{0pt}
 \captionsetup[figure]{font=normalsize,labelfont=normalfont,labelsep=colon}
 
-% Fragmento del expediente: conserva la numeración del PDF de referencia.
+% Numeración propia del informe, independiente del PDF de referencia.
+\renewcommand{\thesection}{\arabic{section}}
 
 \begin{document}
 
@@ -50,10 +52,7 @@
   {\fontsize{25}{30}\selectfont\bfseries
     EXPEDIENTE TÉCNICO DE\\
     OBRA\\
-    Sistema de Cableado Estructurado\par}
-
-  \vspace{0.35cm}
-  {\Large\bfseries Tema: Cableado y estructurado\par}
+    Planos de estructura\par}
 
   \vspace{0.8cm}
   {\Large Primer entregable del curso de:\par}
@@ -74,14 +73,11 @@
   \end{tabular}\par
 
   \vfill
-  {\large 10 de agosto de 2026\par}
+  {\large 12 de octubre de 2026\par}
 \end{titlepage}
 \restoregeometry
 
-\setcounter{page}{13}
-\setcounter{chapter}{1}
-\setcounter{section}{5}
-\setcounter{figure}{3}
+\pagenumbering{arabic}
 
 \section{Normas y estándares aplicados}
 
@@ -144,7 +140,22 @@ especificaciones técnicas detalladas en el presente expediente.
 % de plantas, cubiertas, cortes y elevaciones en su propio formato de papel.
 % Se omiten las tramas HATCH: su conversión generaba rellenos que ocultaban
 % el dibujo. La presentación está ajustada al papel, no a escala de impresión.
+% Los grosores de línea se reducen al 22 % de la exportación general para
+% conservar los detalles al ampliar cada lámina. No se rasterizan los planos.
 \clearpage
-\includepdf[pages=-,fitpaper=true,pagecommand={}]{imagenes/PlanosIIS.pdf}
+\includepdf[
+  pages=-,
+  fitpaper=true,
+  pagecommand={%
+    \thispagestyle{empty}%
+    \AddToShipoutPictureFG*{%
+      \AtPageLowerLeft{%
+        \raisebox{8mm}[0pt][0pt]{%
+          \makebox[\paperwidth][c]{\normalfont\normalsize\thepage}%
+        }%
+      }%
+    }%
+  }
+]{imagenes/PlanosIIS.pdf}
 
 \end{document}
